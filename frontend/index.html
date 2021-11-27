@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projeto Dev Web</title>
   </head>
-  <body>
+  <body style="background-color: rgb(226, 222, 222)">
     <div
       class="topnav"
-      style="background-color: rgb(226, 222, 222); overflow: hidden"
+      style="
+        background-color: #c0c0c0;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        box-sizing: content-box;
+        width: 100%;
+      "
     >
       <a
+        class="active"
         href="#pagina-inicial"
         style="
           float: left;
@@ -21,7 +29,31 @@
           text-decoration: none;
           font-size: 17px;
         "
-        >LOGO</a
+        >Início</a
+      >
+      <a
+        href="#quem-somos"
+        style="
+          float: left;
+          color: #363636;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        "
+        >Sobre</a
+      >
+      <a
+        href="#sobre"
+        style="
+          float: left;
+          color: #363636;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        "
+        >Resultados</a
       >
       <a
         href="#entrar"
@@ -35,43 +67,137 @@
         "
         >Entrar</a
       >
-      <a
-        href="#quem-somos"
+    </div>
+
+    <div
+      class="row"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <div
+        class="card green"
         style="
-          float: right;
-          color: #363636;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          width: 400px;
         "
-        >Quem Somos</a
       >
-      <a
-        href="#sobre"
+        <h2>Fluência em inglês</h2>
+        <p>Data-fim: 27/11/2022</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/74/74472.png"
+          alt="pessoal"
+          style="width: 30px"
+        />
+      </div>
+
+      <div
+        class="card blue"
         style="
-          float: right;
-          color: #363636;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          width: 400px;
         "
-        >Sobre</a
       >
-      <a
-        class="active"
-        href="#pagina-inicial"
+        <h2>Pular de paraquedas</h2>
+        <p>Data-fim: 31/03/2022</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/74/74472.png"
+          alt="pessoal"
+          style="width: 30px"
+        />
+      </div>
+
+      <div
+        class="card red"
         style="
-          float: right;
-          color: #363636;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          width: 400px;
         "
-        >Página Inicial</a
       >
+        <h2>Viajar para Jeri</h2>
+        <p>Data-fim: 31/05/2022</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/33/33308.png"
+          alt="grupo"
+          style="width: 30px"
+        />
+      </div>
+    </div>
+    <div
+      class="row"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <div
+        class="card green"
+        style="
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          width: 400px;
+          background-color: aquamarine;
+        "
+      >
+        <h2>Juntar 2.000,00</h2>
+        <p>Data-fim: 01/11/2021</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/2488/2488749.png"
+          alt="financeiro"
+          style="width: 30px"
+        />
+      </div>
+
+      <div
+        class="card blue"
+        style="
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          background-color: #f08080;
+          width: 400px;
+        "
+      >
+        <h2>Aprender C#</h2>
+        <p>Data-fim: 02/02/2021</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/3310/3310054.png"
+          alt="profissional"
+          style="width: 30px"
+        />
+      </div>
+
+      <div
+        class="card red"
+        style="
+          border-radius: 5px;
+          box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+          padding: 30px;
+          margin: 20px;
+          width: 400px;
+        "
+      >
+        <h2>Emagrecer 5kg</h2>
+        <p>Data-fim: 28/02/2022</p>
+        <img
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/898/898655.png"
+          alt="saude"
+          style="width: 30px"
+        />
+      </div>
     </div>
   </body>
 </html>
