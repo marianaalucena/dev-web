@@ -16,7 +16,7 @@ function Meta(id, descricao, dataInicio, dataFim, tipo, prioridade) {
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  return res.json(metas);
+  res.redirect("/metas");
 });
 
 router.get("/metas", function (req, res, next) {
