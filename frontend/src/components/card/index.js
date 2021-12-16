@@ -1,15 +1,18 @@
 import React from "react";
 import "./card.css";
+import Card from "react-bootstrap/Card";
 
-function Card({ nome, dataInicio, dataFim, tipo, prioridade, pathImg }) {
+function CardComp({ nome, dataInicio, dataFim, tipo, prioridade, pathImg }) {
   return (
-    <div class="card">
-      <h2>{nome}</h2>
-      <p>Data inicio: {dataInicio}</p>
-      <p>Data fim: {dataFim}</p>
-      <img className="imagem" src={pathImg}></img>
-    </div>
+    <Card>
+      <Card.Body>
+        <Card.Title>{nome}</Card.Title>
+        <Card.Text>Data inicio: {dataInicio}</Card.Text>
+        <Card.Text>Data fim: {dataFim}</Card.Text>
+        <img className="imagem" src={pathImg}></img>
+      </Card.Body>
+    </Card>
   );
 }
 
-export default Card;
+export default CardComp;

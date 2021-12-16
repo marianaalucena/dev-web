@@ -1,11 +1,9 @@
 .card {
-  margin-left: 20px;
-  align-items: flex-start;
-  width: 500px;
+  background-color: #f3f1f5;
+  margin-top: 70px;
+  margin-bottom: 20px;
   height: 200px;
-  margin: 20px;
   perspective: 1500px;
-  background-color: aquamarine;
 }
 
 .imagem {

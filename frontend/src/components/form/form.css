@@ -1,0 +1,33 @@
+.form {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.texto {
+  align-items: flex-start;
+  color: #dcdcdc;
+}
+
+.button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #93b5c6;
+  color: #4f4f4f;
+  border: none;
+}
+
+.button:hover {
+  background-color: #71efa3;
+  color: #4f4f4f;
+}
+
+.card {
+  height: auto;
+  width: 600px;
+}
+
+.textoPrioridade {
+  margin: 20px;
+  align-items: flex-start;
+}
