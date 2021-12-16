@@ -35,9 +35,9 @@ router.post("/metas", (req, res, next) => {
 
   metas.push(meta);
 
-  //res.json(metas);
+  res.json(metas);
   console.log(metas);
-  res.json({ message: "Usuário criado!" });
+  //res.json({ message: "Usuário criado!" });
 });
 
 module.exports = router;

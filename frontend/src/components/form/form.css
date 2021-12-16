@@ -27,7 +27,6 @@
   width: 600px;
 }
 
-.textoPrioridade {
-  margin: 20px;
-  align-items: flex-start;
+.radio {
+  margin-top: 20px;
 }

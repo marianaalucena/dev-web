@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "./form.css";
 
 function FormComp() {
@@ -22,7 +24,33 @@ function FormComp() {
           <option value="5">Econômica</option>
         </Form.Select>
 
-        <p className="textoPrioridade">Qual a prioridade?</p>
+        <fieldset className="radio">
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label as="legend" column sm={2}>
+              Qual a prioridade?
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Check
+                type="radio"
+                label="Alta"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+              />
+              <Form.Check
+                type="radio"
+                label="Média"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+              />
+              <Form.Check
+                type="radio"
+                label="Baixa"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios3"
+              />
+            </Col>
+          </Form.Group>
+        </fieldset>
 
         <ButtonToolbar aria-label="Toolbar with button groups">
           <ButtonGroup className="me-2" aria-label="First group">
