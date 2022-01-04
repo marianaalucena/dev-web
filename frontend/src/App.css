@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.linha {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

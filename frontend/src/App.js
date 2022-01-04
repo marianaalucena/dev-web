@@ -2,18 +2,46 @@ import "./App.css";
 import Card from "./components/card";
 import Navbar from "./components/navbar";
 import Form from "./components/form";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import api from "./api";
 
 function App() {
+  const [metas, setMetas] = useState([]);
+
+  function getMetas() {
+    api
+      .get(`/metas`)
+      .then((response) => {
+        setMetas(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+        toast.error(msg);
+      });
+  }
+
+  useEffect(() => {
+    getMetas();
+  }, []);
+
   return (
     <div className="App">
-      <div class="container">
+      <div className="container">
         <Navbar></Navbar>
-        <Card
-          nome="Fluência em inglês"
-          dataInicio="05/09/2020"
-          dataFim="29/09/2029"
-          pathImg="https://cdn-icons-png.flaticon.com/512/74/74472.png"
-        ></Card>
+        {metas &&
+          metas.length > 0 &&
+          metas.map((meta) => (
+            <Card
+              nome={meta.descricao}
+              dataInicio={meta.dataInicio}
+              dataFim={meta.dataFim}
+              pathImg="https://cdn-icons-png.flaticon.com/512/74/74472.png"
+            ></Card>
+          ))}
+
         <Form></Form>
       </div>
     </div>
