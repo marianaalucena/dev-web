@@ -9,10 +9,10 @@ function CompNavbar() {
     <>
       <Navbar fixed="top">
         <Container>
-          <Navbar.Brand href="#home">Metas</Navbar.Brand>
+          <Navbar.Brand href="/">Início</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#features">Sobre</Nav.Link>
-            <Nav.Link href="#pricing">Resultados</Nav.Link>
+            <Nav.Link href="/NovaMeta">Adicionar Meta</Nav.Link>
+            <Nav.Link href="/Resultados">Resultados</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

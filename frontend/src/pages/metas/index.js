@@ -1,10 +1,11 @@
+import React from "react";
 import "./metas.css";
 import Card from "../../components/card";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
-import api from "./api";
+import api from "../../api";
 
-function Metas() {
+const Metas = () => {
   const [metas, setMetas] = useState([]);
 
   function getMetas() {
@@ -26,7 +27,7 @@ function Metas() {
   }, []);
 
   return (
-    <>
+    <div className="container">
       {metas &&
         metas.length > 0 &&
         metas.map((meta) => (
@@ -37,8 +38,8 @@ function Metas() {
             pathImg="https://cdn-icons-png.flaticon.com/512/74/74472.png"
           ></Card>
         ))}
-    </>
+    </div>
   );
-}
+};
 
 export default Metas;
