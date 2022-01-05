@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Metas from "./pages/metas";
-import Form from "./components/form";
 import CompNavbar from "./components/navbar";
+import CriarMeta from "./pages/criarMeta";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Metas />} />
-          <Route path="/NovaMeta" element={<Form />} />
+          <Route path="/NovaMeta" element={<CriarMeta />} />
         </Routes>
       </BrowserRouter>
     </>
