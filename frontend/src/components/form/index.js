@@ -137,21 +137,21 @@ function FormComp() {
               label="Alta"
               name="formHorizontalRadios"
               id="formHorizontalRadios1"
-              value="Alta"
+              defaultValue="Alta"
             />
             <Form.Check
               type="radio"
               label="Média"
               name="formHorizontalRadios"
               id="formHorizontalRadios2"
-              value="Média"
+              defaultValue="Média"
             />
             <Form.Check
               type="radio"
               label="Baixa"
               name="formHorizontalRadios"
               id="formHorizontalRadios3"
-              value="Baixa"
+              defaultValue="Baixa"
             />
           </Col>
         </fieldset>

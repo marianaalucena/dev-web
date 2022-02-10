@@ -10,21 +10,6 @@ const PopUp = ({ modal, toggle, save }) => {
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "descricao") {
-      setDescricao(value);
-    } else if (name === "tipo") {
-      setTipo(value);
-    } else if (name === "prioridade") {
-      setPrioridade(value);
-    } else if (name === "dataInicio") {
-      setDataInicio(maskDate(value));
-    } else {
-      setDataFim(maskDate(value));
-    }
-  };
-
   const maskDate = (value) => {
     return value
       .replace(/\D/g, "")
@@ -79,8 +64,8 @@ const PopUp = ({ modal, toggle, save }) => {
             <input
               type="text"
               className="form-control"
-              value={descricao}
-              onChange={handleChange}
+              defaultValue={descricao}
+              onChange={setDescricao}
               name="descricao"
             ></input>
           </div>
@@ -89,8 +74,8 @@ const PopUp = ({ modal, toggle, save }) => {
             <input
               type="text"
               className="form-control"
-              value={dataInicio}
-              onChange={handleChange}
+              defaultValue={dataInicio}
+              onChange={setDataInicio}
               name="dataInicio"
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -101,8 +86,8 @@ const PopUp = ({ modal, toggle, save }) => {
             <input
               type="text"
               className="form-control"
-              value={dataFim}
-              onChange={handleChange}
+              defaultValue={dataFim}
+              onChange={setDataFim}
               name={dataFim}
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -113,8 +98,8 @@ const PopUp = ({ modal, toggle, save }) => {
             <input
               type="text"
               className="form-control"
-              value={tipo}
-              onChange={handleChange}
+              defaultValue={tipo}
+              onChange={setTipo}
               placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
             ></input>
@@ -124,8 +109,8 @@ const PopUp = ({ modal, toggle, save }) => {
             <input
               type="text"
               className="form-control"
-              value={prioridade}
-              onChange={handleChange}
+              defaultValue={prioridade}
+              onChange={setPrioridade}
               placeholder="Alta / Média / Baixa"
               name="prioridade"
             ></input>

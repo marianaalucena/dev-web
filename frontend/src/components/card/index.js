@@ -15,27 +15,19 @@ const Card = ({ metaObj, index }) => {
       primaryColor: "#5DC250",
       secondaryColor: "#F2FAF1",
     },
-    {
-      primaryColor: "#F48687",
-      secondaryColor: "#FDF1F1",
-    },
-    {
-      primaryColor: "#B964F7",
-      secondaryColor: "#F3F0FD",
-    },
   ];
 
   return (
     <div class="card-wrapper mr-5">
       <div
         class="card-top"
-        style={{ "background-color": colors[index % 5].primaryColor }}
+        style={{ "background-color": colors[index % 3].primaryColor }}
       ></div>
       <div class="task-holder">
         <span
           class="card-header"
           style={{
-            "background-color": colors[index % 5].secondaryColor,
+            "background-color": colors[index % 3].secondaryColor,
             "border-radius": "10px",
           }}
         >
@@ -48,11 +40,11 @@ const Card = ({ metaObj, index }) => {
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
           <i
             class="far fa-edit mr-3"
-            style={{ color: colors[index % 5].primaryColor }}
+            style={{ color: colors[index % 3].primaryColor }}
           ></i>
           <i
             class="far fa-trash-alt "
-            style={{ color: colors[index % 5].primaryColor }}
+            style={{ color: colors[index % 3].primaryColor }}
           ></i>
         </div>
       </div>
