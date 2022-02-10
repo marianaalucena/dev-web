@@ -1,0 +1,56 @@
+import React, { useEffect, useState } from "react";
+import "./toDoList.css";
+import PopUp from "../popup";
+import Card from "../card";
+import api from "../../api";
+import { toast } from "react-toastify";
+
+const ToDoList = () => {
+  const [modal, setModal] = useState(false);
+  const [metasList, setMetasList] = useState([]);
+
+  function getMetas() {
+    api
+      .get(`/metas`)
+      .then((response) => {
+        setMetasList(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+        toast.error(msg);
+      });
+  }
+
+  useEffect(() => {
+    getMetas();
+  }, []);
+
+  const toggle = () => {
+    setModal(!modal);
+  };
+
+  const saveMeta = () => {
+    setModal(false);
+  };
+
+  return (
+    <>
+      <div className="header text-center">
+        <h3>Metas</h3>
+        <button className="btn btn-primary mt-2" onClick={() => setModal(true)}>
+          Criar Meta
+        </button>
+      </div>
+      <div className="task-container">
+        {metasList.map((obj, index) => (
+          <Card metaObj={obj} index={index}></Card>
+        ))}
+      </div>
+      <PopUp toggle={toggle} modal={modal} save={saveMeta}></PopUp>
+    </>
+  );
+};
+
+export default ToDoList;

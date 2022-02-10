@@ -13,6 +13,7 @@ function FormComp() {
   const [prioridade, setPrioridade] = useState("");
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
+  const [labelDescicaoStyle, setLabelDescicaoStyle] = useState({});
 
   const stylesInvalid = {
     label: {
@@ -68,9 +69,22 @@ function FormComp() {
         dataFim,
       };
 
+      console.log(
+        "descricao: " +
+          descricao +
+          ", tipo: " +
+          tipo +
+          ", prioridade: " +
+          prioridade +
+          ", dataInicio: " +
+          dataInicio +
+          ", dataFim: " +
+          dataFim
+      );
+
       api
         .post("/metas", body)
-        .then(async (response) => {
+        .then((response) => {
           toast("Meta criada com sucesso!");
         })
         .catch((error) => {
@@ -83,6 +97,15 @@ function FormComp() {
     }
   };
 
+  // 00/00/0000
+  const maskDate = (value) => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{4})(\d)/, "$1");
+  };
+
   return (
     <Card className="card">
       <Form className="form">
@@ -90,17 +113,20 @@ function FormComp() {
         <Form.Group className="mb-3" type="text">
           <Form.Control
             name="DESCRICAO"
-            value={descricao}
+            defaultValue={descricao}
             onChange={setDescricao}
           />
         </Form.Group>
-        <Form.Select aria-label="Default select example">
+        <Form.Select
+          aria-label="Default select example"
+          onChange={(event) => setTipo(event.target.value)}
+        >
           <option className="texto">Qual o tipo?</option>
-          <option value="1">Pessoal</option>
-          <option value="2">Profissional</option>
-          <option value="3">Saúde</option>
-          <option value="4">Em grupo</option>
-          <option value="5">Econômica</option>
+          <option value="Pessoal">Pessoal</option>
+          <option value="Profissional">Profissional</option>
+          <option value="Saúde">Saúde</option>
+          <option value="Em grupo">Em grupo</option>
+          <option value="Econômica">Econômica</option>
         </Form.Select>
         <p className="prioridade">Qual a prioridade?</p>
 
@@ -111,18 +137,21 @@ function FormComp() {
               label="Alta"
               name="formHorizontalRadios"
               id="formHorizontalRadios1"
+              value="Alta"
             />
             <Form.Check
               type="radio"
               label="Média"
               name="formHorizontalRadios"
               id="formHorizontalRadios2"
+              value="Média"
             />
             <Form.Check
               type="radio"
               label="Baixa"
               name="formHorizontalRadios"
               id="formHorizontalRadios3"
+              value="Baixa"
             />
           </Col>
         </fieldset>
@@ -131,8 +160,9 @@ function FormComp() {
           <Form.Control
             type="text"
             value={dataInicio}
-            onChange={setDataInicio}
+            onChange={(event) => setDataInicio(maskDate(event.target.value))}
             placeholder="DD/MM/AAAA"
+            maxLength="10"
           />
         </Form.Group>
 
@@ -141,8 +171,9 @@ function FormComp() {
           <Form.Control
             type="text"
             value={dataFim}
-            onChange={setDataFim}
+            onChange={(event) => setDataFim(maskDate(event.target.value))}
             placeholder="DD/MM/AAAA"
+            maxLength="10"
           />
         </Form.Group>
         <Button className="button" type="Criar meta" onClick={novaMeta}>
