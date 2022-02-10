@@ -115,6 +115,7 @@ const PopUp = ({ modal, toggle, save }) => {
               className="form-control"
               value={tipo}
               onChange={handleChange}
+              placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
             ></input>
           </div>
@@ -125,16 +126,17 @@ const PopUp = ({ modal, toggle, save }) => {
               className="form-control"
               value={prioridade}
               onChange={handleChange}
+              placeholder="Alta / Média / Baixa"
               name="prioridade"
             ></input>
           </div>
         </form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle && novaMeta}>
+        <Button color="primary" onClick={novaMeta}>
           Adicionar
         </Button>{" "}
-        <Button onClick={toggle}>Cancel</Button>
+        <Button onClick={toggle}>Cancelar</Button>
       </ModalFooter>
     </Modal>
   );
