@@ -23,16 +23,29 @@ const ToDoList = () => {
       });
   }
 
+  function saveMeta(novaMeta) {
+    api
+      .post("/metas", novaMeta)
+      .then((response) => {
+        toast("Meta criada com sucesso!");
+        toggle();
+        setMetasList(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+
+        toast.error(msg);
+      });
+  }
+
   useEffect(() => {
     getMetas();
   }, []);
 
   const toggle = () => {
     setModal(!modal);
-  };
-
-  const saveMeta = () => {
-    setModal(false);
   };
 
   return (
@@ -45,7 +58,7 @@ const ToDoList = () => {
       </div>
       <div className="task-container">
         {metasList.map((obj, index) => (
-          <Card metaObj={obj} index={index}></Card>
+          <Card metaObj={obj} index={index} key={index}></Card>
         ))}
       </div>
       <PopUp toggle={toggle} modal={modal} save={saveMeta}></PopUp>
