@@ -18,40 +18,15 @@ const PopUp = ({ modal, toggle, save }) => {
       .replace(/(\d{4})(\d)/, "$1");
   };
 
-  const novaMeta = () => {
-    const body = {
+  const saveMeta = () => {
+    const meta = {
       descricao,
       tipo,
       prioridade,
       dataInicio,
       dataFim,
     };
-
-    console.log(
-      "descricao: " +
-        descricao +
-        ", tipo: " +
-        tipo +
-        ", prioridade: " +
-        prioridade +
-        ", dataInicio: " +
-        dataInicio +
-        ", dataFim: " +
-        dataFim
-    );
-
-    api
-      .post("/metas", body)
-      .then((response) => {
-        toast("Meta criada com sucesso!");
-      })
-      .catch((error) => {
-        let msg = "";
-        if (error.response) msg = error.response.data.error;
-        else msg = "Network failed";
-
-        toast.error(msg);
-      });
+    save(meta);
   };
 
   return (
@@ -65,7 +40,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={descricao}
-              onChange={setDescricao}
+              onChange={(e) => setDescricao(e.target.value)}
               name="descricao"
             ></input>
           </div>
@@ -75,7 +50,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataInicio}
-              onChange={setDataInicio}
+              onChange={(e) => setDataInicio(e.target.value)}
               name="dataInicio"
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -87,7 +62,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataFim}
-              onChange={setDataFim}
+              onChange={(e) => setDataFim(e.target.value)}
               name={dataFim}
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -99,7 +74,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={tipo}
-              onChange={setTipo}
+              onChange={(e) => setTipo(e.target.value)}
               placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
             ></input>
@@ -110,7 +85,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={prioridade}
-              onChange={setPrioridade}
+              onChange={(e) => setPrioridade(e.target.value)}
               placeholder="Alta / Média / Baixa"
               name="prioridade"
             ></input>
@@ -118,7 +93,7 @@ const PopUp = ({ modal, toggle, save }) => {
         </form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={novaMeta}>
+        <Button color="primary" onClick={saveMeta}>
           Adicionar
         </Button>{" "}
         <Button onClick={toggle}>Cancelar</Button>

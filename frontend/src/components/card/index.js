@@ -18,17 +18,17 @@ const Card = ({ metaObj, index }) => {
   ];
 
   return (
-    <div class="card-wrapper mr-5">
+    <div className="card-wrapper mr-5">
       <div
-        class="card-top"
-        style={{ "background-color": colors[index % 3].primaryColor }}
+        className="card-top"
+        style={{ "backgroundColor": colors[index % 3].primaryColor }}
       ></div>
-      <div class="task-holder">
+      <div className="task-holder">
         <span
-          class="card-header"
+          className="card-header"
           style={{
-            "background-color": colors[index % 3].secondaryColor,
-            "border-radius": "10px",
+            "backgroundColor": colors[index % 3].secondaryColor,
+            "borderRadius": "10px",
           }}
         >
           {metaObj.descricao}
@@ -39,11 +39,11 @@ const Card = ({ metaObj, index }) => {
         <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
           <i
-            class="far fa-edit mr-3"
+            className="far fa-edit mr-3"
             style={{ color: colors[index % 3].primaryColor }}
           ></i>
           <i
-            class="far fa-trash-alt "
+            className="far fa-trash-alt "
             style={{ color: colors[index % 3].primaryColor }}
           ></i>
         </div>
