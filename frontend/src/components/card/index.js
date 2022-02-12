@@ -4,47 +4,58 @@ import "./card.css";
 const Card = ({ metaObj, index }) => {
   const colors = [
     {
-      primaryColor: "#5D93E1",
-      secondaryColor: "#RCF3FC",
+      primaryColor: "#F0E68C",
+      secondaryColor: "#FFFACD",
     },
     {
-      primaryColor: "#F9D288",
-      secondaryColor: "#FEFAF1",
+      primaryColor: "#00FF7F",
+      secondaryColor: "#98FB98",
     },
     {
-      primaryColor: "#5DC250",
-      secondaryColor: "#F2FAF1",
+      primaryColor: "#DC143C",
+      secondaryColor: "#F08080",
     },
   ];
+
+  /*
+  //falta rota no back
+  const editaMeta = () => {
+    edita();
+  };
+
+  const deletaMeta = () => {
+    deleta(metaObj.id);
+  };
+*/
 
   return (
     <div className="card-wrapper mr-5">
       <div
         className="card-top"
-        style={{ "backgroundColor": colors[index % 3].primaryColor }}
+        style={{ backgroundColor: colors[index % 3].primaryColor }}
       ></div>
       <div className="task-holder">
         <span
           className="card-header"
           style={{
-            "backgroundColor": colors[index % 3].secondaryColor,
-            "borderRadius": "10px",
+            backgroundColor: colors[index % 3].secondaryColor,
+            borderRadius: "10px",
           }}
         >
           {metaObj.descricao}
         </span>
-        <p className="mt-2">Data inicial: {metaObj.dataInicio}</p>
+        <p className="mt-3">Data inicial: {metaObj.dataInicio}</p>
         <p className="mt-2">Data final: {metaObj.dataFim}</p>
         <p className="mt-2">Tipo: {metaObj.tipo}</p>
         <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
           <i
             className="far fa-edit mr-3"
-            style={{ color: colors[index % 3].primaryColor }}
-          ></i>
+            style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
+          ></i>{" "}
           <i
             className="far fa-trash-alt "
-            style={{ color: colors[index % 3].primaryColor }}
+            style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
           ></i>
         </div>
       </div>

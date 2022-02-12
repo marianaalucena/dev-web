@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const metas = []; // As informações ficaram armazenadas dentro deste array []
+let metas = []; // As informações ficaram armazenadas dentro deste array []
 
 function Meta(id, descricao, dataInicio, dataFim, tipo, prioridade) {
   return {
@@ -37,7 +37,31 @@ router.post("/metas", (req, res, next) => {
 
   res.json(metas);
   console.log(metas);
-  //res.json({ message: "Usuário criado!" });
+});
+
+//nao esta pronta
+router.put("/metas/:id", (req, res, next) => {
+  /*
+  const { id } = req.params;
+  const body = req.body;
+  const idInt = parseInt(id);
+  const updated = metas.find((meta) => meta.id === idInt);
+
+  res.json(metas);
+  console.log(metas);
+  */
+});
+
+router.delete("/metas/delete/:id", (req, res, next) => {
+  const { id } = req.params;
+  const idInt = parseInt(id);
+  const deleted = metas.find((meta) => meta.id === idInt);
+  if (deleted) {
+    metas = metas.filter((meta) => meta.id !== idInt);
+    res.status(200).json(deleted);
+  } else {
+    res.status(404).json({ message: "Meta não encontrada" });
+  }
 });
 
 module.exports = router;

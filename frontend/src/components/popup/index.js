@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import api from "../../api";
-import { toast } from "react-toastify";
 
 const PopUp = ({ modal, toggle, save }) => {
   const [descricao, setDescricao] = useState("");
@@ -9,14 +7,6 @@ const PopUp = ({ modal, toggle, save }) => {
   const [prioridade, setPrioridade] = useState("");
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
-
-  const maskDate = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{4})(\d)/, "$1");
-  };
 
   const saveMeta = () => {
     const meta = {
@@ -27,6 +17,15 @@ const PopUp = ({ modal, toggle, save }) => {
       dataFim,
     };
     save(meta);
+  };
+
+  // 00/00/0000
+  const maskDate = (value) => {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{4})(\d)/, "$1");
   };
 
   return (
@@ -42,6 +41,7 @@ const PopUp = ({ modal, toggle, save }) => {
               defaultValue={descricao}
               onChange={(e) => setDescricao(e.target.value)}
               name="descricao"
+              maxLength="20"
             ></input>
           </div>
           <div className="form-group mt-3">
@@ -50,7 +50,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataInicio}
-              onChange={(e) => setDataInicio(e.target.value)}
+              onChange={(e) => setDataInicio(maskDate(e.target.value))}
               name="dataInicio"
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -62,7 +62,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataFim}
-              onChange={(e) => setDataFim(e.target.value)}
+              onChange={(e) => setDataFim(maskDate(e.target.value))}
               name={dataFim}
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -77,6 +77,7 @@ const PopUp = ({ modal, toggle, save }) => {
               onChange={(e) => setTipo(e.target.value)}
               placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
+              maxLength="14"
             ></input>
           </div>
           <div className="form-group mt-3">
@@ -88,6 +89,7 @@ const PopUp = ({ modal, toggle, save }) => {
               onChange={(e) => setPrioridade(e.target.value)}
               placeholder="Alta / Média / Baixa"
               name="prioridade"
+              maxLength="5"
             ></input>
           </div>
         </form>

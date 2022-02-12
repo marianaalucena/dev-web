@@ -1,12 +1,17 @@
 .header {
+  font-family: "Raleway", sans-serif;
   background-color: #e9eef6;
   height: 200px;
   width: 100%;
   padding-top: 50px;
 }
 
+.btn {
+  font-family: "Roboto Slab", serif;
+}
+
 .task-container {
-  height: 800px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;

@@ -25,7 +25,7 @@ const ToDoList = () => {
 
   function saveMeta(novaMeta) {
     api
-      .post("/metas", novaMeta)
+      .post(`/metas`, novaMeta)
       .then((response) => {
         toast("Meta criada com sucesso!");
         toggle();
@@ -39,6 +39,45 @@ const ToDoList = () => {
         toast.error(msg);
       });
   }
+
+  /*
+  //falta a rota no back
+  function editaMeta(novaMeta) {
+    api
+      .put("/metas" + novaMeta.index, novaMeta)
+      .then((response) => {
+        toast("Meta editada com sucesso!");
+        toggle();
+        setMetasList(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+
+        toast.error(msg);
+      });
+  }
+
+
+  function deletaMeta(index) {
+    ///metas/delete/:id
+    api
+      .delete(`/metas/delete` + index)
+      .then((response) => {
+        console.log("deletou");
+        toast("Meta deletada!");
+        toggle();
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+
+        toast.error(msg);
+      });
+  }
+*/
 
   useEffect(() => {
     getMetas();
