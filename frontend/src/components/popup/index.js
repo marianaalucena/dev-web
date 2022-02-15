@@ -29,7 +29,7 @@ const PopUp = ({ modal, toggle, save }) => {
   };
 
   return (
-    <Modal toggle={toggle} isOpen={modal}>
+    <Modal toggle={toggle} isOpen={modal} data-testid="modal">
       <ModalHeader toggle={toggle}>Nova Meta</ModalHeader>
       <ModalBody>
         <form>

@@ -91,7 +91,11 @@ const ToDoList = () => {
     <>
       <div className="header text-center">
         <h3>Metas</h3>
-        <button className="btn btn-primary mt-2" onClick={() => setModal(true)}>
+        <button
+          className="btn btn-primary mt-2"
+          data-testid="criar-meta"
+          onClick={() => setModal(true)}
+        >
           Criar Meta
         </button>
       </div>
