@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ metaObj, index }) => {
+const Card = ({ metaObj, index, deletaMeta }) => {
   const colors = [
     {
       primaryColor: "#F0E68C",
@@ -19,14 +19,13 @@ const Card = ({ metaObj, index }) => {
 
   /*
   //falta rota no back
-  const editaMeta = () => {
-    edita();
-  };
+  const hangleEdita = () => {
+    
+  };*/
 
-  const deletaMeta = () => {
-    deleta(metaObj.id);
+  const handleDelete = () => {
+    deletaMeta(index);
   };
-*/
 
   return (
     <div className="card-wrapper mr-5">
@@ -56,6 +55,7 @@ const Card = ({ metaObj, index }) => {
           <i
             className="far fa-trash-alt "
             style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
+            onClick={handleDelete}
           ></i>
         </div>
       </div>

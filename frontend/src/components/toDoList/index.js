@@ -58,13 +58,13 @@ const ToDoList = () => {
         toast.error(msg);
       });
   }
-
+*/
 
   function deletaMeta(index) {
-    ///metas/delete/:id
     api
-      .delete(`/metas/delete` + index)
+      .delete(`/metas/delete/` + index)
       .then((response) => {
+        getMetas();
         console.log("deletou");
         toast("Meta deletada!");
         toggle();
@@ -77,7 +77,6 @@ const ToDoList = () => {
         toast.error(msg);
       });
   }
-*/
 
   useEffect(() => {
     getMetas();
@@ -101,7 +100,12 @@ const ToDoList = () => {
       </div>
       <div className="task-container">
         {metasList.map((obj, index) => (
-          <Card metaObj={obj} index={index} key={index}></Card>
+          <Card
+            metaObj={obj}
+            index={index}
+            key={index}
+            deletaMeta={deletaMeta}
+          ></Card>
         ))}
       </div>
       <PopUp toggle={toggle} modal={modal} save={saveMeta}></PopUp>

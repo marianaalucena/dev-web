@@ -9,7 +9,7 @@ describe("ToDoList Component", () => {
     expect(toDoListTitle).toBeInTheDocument();
   });
 
-  test("button open modal", () => {
+  test("button modal", () => {
     render(<ToDoList />);
     const buttonElement = screen.getByTestId("criar-meta");
     expect(buttonElement).toBeInTheDocument();
@@ -22,4 +22,6 @@ describe("ToDoList Component", () => {
     userEvent.click(buttonElement);
     expect(screen.getByTestId("modal")).toBeInTheDocument();
   });
+
+  test("renders cards", () => {});
 });
