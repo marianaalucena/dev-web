@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { useForm } from "react-hook-form";
 
 const PopUp = ({ modal, toggle, save }) => {
   const [descricao, setDescricao] = useState("");
@@ -39,7 +40,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
+              onChange={(event) => setDescricao(event.target.value)}
               name="descricao"
               maxLength="20"
             ></input>
@@ -50,7 +51,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataInicio}
-              onChange={(e) => setDataInicio(maskDate(e.target.value))}
+              onChange={(event) => setDataInicio(maskDate(event.target.value))}
               name="dataInicio"
               placeholder="DD/MM/AAAA"
               maxLength="10"
@@ -62,7 +63,7 @@ const PopUp = ({ modal, toggle, save }) => {
               type="text"
               className="form-control"
               defaultValue={dataFim}
-              onChange={(e) => setDataFim(maskDate(e.target.value))}
+              onChange={(event) => setDataFim(maskDate(event.target.value))}
               name={dataFim}
               placeholder="DD/MM/AAAA"
               maxLength="10"

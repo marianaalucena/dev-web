@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./card.css";
+import EditMetaPopUp from "../modals/editMeta";
 
-const Card = ({ metaObj, index, deletaMeta }) => {
+const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
+  const [modal, setModal] = useState(false);
+
   const colors = [
     {
       primaryColor: "#F0E68C",
@@ -17,11 +20,14 @@ const Card = ({ metaObj, index, deletaMeta }) => {
     },
   ];
 
-  /*
+  const toggle = () => {
+    setModal(!modal);
+  };
+
   //falta rota no back
-  const hangleEdita = () => {
-    
-  };*/
+  const updateMeta = (obj) => {
+    updateListMetas(obj, index);
+  };
 
   const handleDelete = () => {
     deletaMeta(index);
@@ -51,6 +57,7 @@ const Card = ({ metaObj, index, deletaMeta }) => {
           <i
             className="far fa-edit mr-3"
             style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
+            onClick={() => setModal(true)}
           ></i>{" "}
           <i
             className="far fa-trash-alt "
@@ -58,6 +65,12 @@ const Card = ({ metaObj, index, deletaMeta }) => {
             onClick={handleDelete}
           ></i>
         </div>
+        <EditMetaPopUp
+          modal={modal}
+          toggle={toggle}
+          updateMeta={updateMeta}
+          metaObj={metaObj}
+        />
       </div>
     </div>
   );

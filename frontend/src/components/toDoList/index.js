@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./toDoList.css";
-import PopUp from "../popup";
+import PopUp from "../modals";
 import Card from "../card";
 import api from "../../api";
 import { toast } from "react-toastify";
@@ -42,7 +42,7 @@ const ToDoList = () => {
 
   /*
   //falta a rota no back
-  function editaMeta(novaMeta) {
+  function updateListMetas(obj, index) {
     api
       .put("/metas" + novaMeta.index, novaMeta)
       .then((response) => {
@@ -62,12 +62,10 @@ const ToDoList = () => {
 
   function deletaMeta(index) {
     api
-      .delete(`/metas/delete/` + index)
+      .delete(`/metas/delete/` + metasList[index].id)
       .then((response) => {
         getMetas();
-        console.log("deletou");
         toast("Meta deletada!");
-        toggle();
       })
       .catch((error) => {
         let msg = "";
