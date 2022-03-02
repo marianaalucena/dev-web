@@ -4,6 +4,7 @@ import PopUp from "../modals";
 import Card from "../card";
 import api from "../../api";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const ToDoList = () => {
   const [modal, setModal] = useState(false);
@@ -87,6 +88,9 @@ const ToDoList = () => {
   return (
     <>
       <div className="header text-center">
+        <Link to="/sobre" className="about">
+          Sobre
+        </Link>
         <h3>Metas</h3>
         <button
           className="btn btn-primary mt-2"
@@ -96,6 +100,7 @@ const ToDoList = () => {
           Criar Meta
         </button>
       </div>
+
       <div className="task-container">
         {metasList.map((obj, index) => (
           <Card

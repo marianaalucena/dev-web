@@ -1,24 +1,25 @@
-.header {
+.about {
   font-family: "Raleway", sans-serif;
   background-color: #e9eef6;
   height: 200px;
-  width: 100%;
+  width: auto;
   padding-top: 50px;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-.btn {
-  font-family: "Roboto Slab", serif;
-}
-
-.task-container {
+.body {
   height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   background-color: #f6f7f8;
   justify-content: space-evenly;
-  padding: 40px 100px;
 }
 
-.about {
+.text {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: 30px;
 }
