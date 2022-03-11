@@ -2,23 +2,69 @@ import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./modals.css";
 
-const PopUp = ({ modal, toggle, save }) => {
+function PopUp({ modal, toggle, save }) {
   const [descricao, setDescricao] = useState("");
   const [tipo, setTipo] = useState("");
   const [prioridade, setPrioridade] = useState("");
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
 
+  // const [validacao, setValidacao] = useState(true);
+
+  const validatePrioridade = () => {
+    const validation = prioridade === "" || prioridade === null;
+    return !validation;
+  };
+
+  const validateTipo = () => {
+    const validation = tipo === "" || tipo === null;
+    return !validation;
+  };
+
+  const validateDescricao = () => {
+    const validation = descricao === "" || descricao === null;
+    return !validation;
+  };
+
+  const validateDataInicio = () => {
+    const validation = dataInicio === "" || dataInicio === null;
+    return !validation;
+  };
+
+  const validateDataFim = () => {
+    const validation = dataFim === "" || dataFim === null;
+    return !validation;
+  };
+
+  const validateInfo = () => {
+    if (
+      validatePrioridade() &&
+      validateTipo() &&
+      validateDataFim() &&
+      validateDataInicio() &&
+      validateDescricao()
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const saveMeta = () => {
-    const meta = {
-      descricao,
-      tipo,
-      prioridade,
-      dataInicio,
-      dataFim,
-    };
-    save(meta);
+    //console.log(validacao);
+    console.log(validateInfo());
+    if (validateInfo()) {
+      const meta = {
+        descricao,
+        tipo,
+        prioridade,
+        dataInicio,
+        dataFim,
+      };
+      save(meta);
+    }
   };
 
   return (
@@ -27,6 +73,11 @@ const PopUp = ({ modal, toggle, save }) => {
       <ModalBody>
         <form>
           <div className="form-group">
+            {!validateInfo() ? (
+              <h4 className="error">Todos os campos são obrigatórios</h4>
+            ) : (
+              ""
+            )}
             <label>Descrição</label>
             <input
               type="text"
@@ -97,5 +148,5 @@ const PopUp = ({ modal, toggle, save }) => {
       </ModalFooter>
     </Modal>
   );
-};
+}
 export default PopUp;
