@@ -33,11 +33,29 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
     deletaMeta(index);
   };
 
+  const dateFormat = (date) => {
+    var d = new Date(date);
+
+    var mes = "" + (d.getMonth() + 1);
+    var dia = "" + d.getDate();
+    var ano = d.getFullYear();
+
+    if (mes.length < 2) mes = "0" + mes;
+    if (dia.length < 2) dia = "0" + dia;
+
+    return [dia, mes, ano].join("/");
+  };
+
   return (
     <div className="card-wrapper mr-5">
       <div
-        className="card-top"
-        style={{ backgroundColor: colors[index % 3].primaryColor }}
+        className={
+          metaObj.prioridade === "Alta"
+            ? "prior-Alta"
+            : metaObj.prioridade === "Média"
+            ? "prior-Media"
+            : "prior-Baixa"
+        }
       ></div>
       <div className="task-holder">
         <span
@@ -49,8 +67,8 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
         >
           {metaObj.descricao}
         </span>
-        <p className="mt-3">Data inicial: {metaObj.dataInicio}</p>
-        <p className="mt-2">Data final: {metaObj.dataFim}</p>
+        <p className="mt-3">Data inicial: {dateFormat(metaObj.dataInicio)}</p>
+        <p className="mt-2">Data final: {dateFormat(metaObj.dataFim)}</p>
         <p className="mt-2">Tipo: {metaObj.tipo}</p>
         <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>

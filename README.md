@@ -4,16 +4,13 @@
 
 Telas: 
 
-1. Cadastro de usuário
-2. Login
-3. Metas:
-    - As metas deverão ser cadastradas com um tipo, sendo eles: financeira, profissional, pessoal, em grupo
+1. Sobre
+2. Metas:
+    - As metas deverão ser cadastradas com um tipo
 	- Data fim (data que o usuário pretende concluí-la)
-    - As metas poderão ser classificadas como **atrasadas**, caso possuam data fim menor que a data atual, **em andamento** e **concluídas**
-    - Será possível filtrá-las por categoria, data fim ou status
-4. Gráfico
-    - Nesta tela será exibido o desempenho de acordo com as metas adicionadas e concluídas do usuário
-
+    - Será refletido, visualmente, quando a prioridade de uma meta for alterada, onde a cor do card será modificada
+	- Os cards deverão ser exibidos ordenados de acordo com a data final adicionada, sendo o primeiro card com a data final mais próxima e o último com a data final mais distante da data atual
+	
 Bônus:
 
 * Para cada meta poderá ser atribuído diversas tasks

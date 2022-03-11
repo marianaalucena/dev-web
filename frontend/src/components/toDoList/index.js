@@ -25,12 +25,15 @@ const ToDoList = () => {
   }
 
   function saveMeta(novaMeta) {
+    console.log(novaMeta.dataInicio);
+
     api
       .post(`/metas`, novaMeta)
       .then((response) => {
         toast("Meta criada com sucesso!");
         toggle();
         setMetasList(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         let msg = "";

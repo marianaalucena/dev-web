@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const PopUp = ({ modal, toggle, save }) => {
   const [descricao, setDescricao] = useState("");
@@ -20,15 +21,6 @@ const PopUp = ({ modal, toggle, save }) => {
     save(meta);
   };
 
-  // 00/00/0000
-  const maskDate = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{2})(\d)/, "$1/$2")
-      .replace(/(\d{4})(\d)/, "$1");
-  };
-
   return (
     <Modal toggle={toggle} isOpen={modal} data-testid="modal">
       <ModalHeader toggle={toggle}>Nova Meta</ModalHeader>
@@ -43,31 +35,31 @@ const PopUp = ({ modal, toggle, save }) => {
               onChange={(event) => setDescricao(event.target.value)}
               name="descricao"
               maxLength="20"
+              autoComplete="off"
             ></input>
           </div>
           <div className="form-group mt-3">
             <label>Data Inicial</label>
-            <input
-              type="text"
+            <DatePicker
+              selected={dataInicio}
+              onChange={(date) => setDataInicio(date)}
               className="form-control"
-              defaultValue={dataInicio}
-              onChange={(event) => setDataInicio(maskDate(event.target.value))}
+              id="data-inicio"
+              autoComplete="off"
+              dateFormat="dd/MM/yyyy"
               name="dataInicio"
-              placeholder="DD/MM/AAAA"
-              maxLength="10"
-            ></input>
+            />
           </div>
           <div className="form-group mt-3">
             <label>Data Final</label>
-            <input
-              type="text"
+            <DatePicker
+              selected={dataFim}
+              onChange={(date) => setDataFim(date)}
               className="form-control"
-              defaultValue={dataFim}
-              onChange={(event) => setDataFim(maskDate(event.target.value))}
-              name={dataFim}
-              placeholder="DD/MM/AAAA"
-              maxLength="10"
-            ></input>
+              id="dataFinal"
+              autoComplete="off"
+              dateFormat="dd/MM/yyyy"
+            />
           </div>
           <div className="form-group mt-3">
             <label>Tipo</label>
@@ -79,6 +71,7 @@ const PopUp = ({ modal, toggle, save }) => {
               placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
               maxLength="14"
+              autoComplete="off"
             ></input>
           </div>
           <div className="form-group mt-3">
@@ -91,6 +84,7 @@ const PopUp = ({ modal, toggle, save }) => {
               placeholder="Alta / Média / Baixa"
               name="prioridade"
               maxLength="5"
+              autoComplete="off"
             ></input>
           </div>
         </form>

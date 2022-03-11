@@ -36,3 +36,15 @@
   font-family: "Raleway", sans-serif;
   font-size: 20px;
 }
+
+.prior-Media {
+  background-color: #f0e68c;
+}
+
+.prior-Alta {
+  background-color: #00ff7f;
+}
+
+.prior-Baixa {
+  background-color: #dc143c;
+}
