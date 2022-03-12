@@ -8,12 +8,25 @@ const EditMetaPopUp = ({ modal, toggle, updateMeta, metaObj }) => {
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
 
+  const dateFormat = (date) => {
+    var d = new Date(date);
+
+    var mes = "" + (d.getMonth() + 1);
+    var dia = "" + d.getDate();
+    var ano = d.getFullYear();
+
+    if (mes.length < 2) mes = "0" + mes;
+    if (dia.length < 2) dia = "0" + dia;
+
+    return [dia, mes, ano].join("/");
+  };
+
   useEffect(() => {
     setDescricao(metaObj.descricao);
     setTipo(metaObj.tipo);
     setPrioridade(metaObj.prioridade);
-    setDataInicio(metaObj.dataInicio);
-    setDataFim(metaObj.dataFim);
+    setDataInicio(dateFormat(metaObj.dataInicio));
+    setDataFim(dateFormat(metaObj.dataFim));
   }, []);
 
   //ainda nao esta pronto

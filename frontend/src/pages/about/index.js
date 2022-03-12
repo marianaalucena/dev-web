@@ -13,8 +13,7 @@ function About() {
       <div className="body">
         <span className="text">
           Sabemos da importância de ter metas e objetivos claros e bem
-          definidos, seja na vida pessoal, profissional ou financeira está no
-          poder que isso tem de motivar todas os perfis de pessoas. Estes
+          definidos, seja na vida pessoal, profissional ou financeira. Estes
           elementos têm a grande capacidade de nortear as ações e a jornada
           evolutiva de quaisquer tipos de pessoas. Tendo isso em vista,
           consideramos criar uma ferramenta web com o objetivo principal

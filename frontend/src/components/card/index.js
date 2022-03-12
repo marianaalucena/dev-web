@@ -1,27 +1,18 @@
 import React, { useState } from "react";
 import "./card.css";
 import EditMetaPopUp from "../modals/editMeta";
+import AlertDialog from "../modals/alertDialog";
 
 const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
   const [modal, setModal] = useState(false);
-
-  const colors = [
-    {
-      primaryColor: "#F0E68C",
-      secondaryColor: "#FFFACD",
-    },
-    {
-      primaryColor: "#00FF7F",
-      secondaryColor: "#98FB98",
-    },
-    {
-      primaryColor: "#DC143C",
-      secondaryColor: "#F08080",
-    },
-  ];
+  const [dialog, setDialog] = useState(false);
 
   const toggle = () => {
     setModal(!modal);
+  };
+
+  const toggleDialog = () => {
+    setDialog(!dialog);
   };
 
   //falta rota no back
@@ -51,19 +42,21 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
       <div
         className={
           metaObj.prioridade === "Alta"
-            ? "prior-Alta"
+            ? "prior-Alta-Top"
             : metaObj.prioridade === "Média"
-            ? "prior-Media"
-            : "prior-Baixa"
+            ? "prior-Media-Top"
+            : "prior-Baixa-Top"
         }
       ></div>
       <div className="task-holder">
         <span
-          className="card-header"
-          style={{
-            backgroundColor: colors[index % 3].secondaryColor,
-            borderRadius: "10px",
-          }}
+          className={
+            metaObj.prioridade === "Alta"
+              ? "prior-Alta-header"
+              : metaObj.prioridade === "Média"
+              ? "prior-Media-header"
+              : "prior-Baixa-header"
+          }
         >
           {metaObj.descricao}
         </span>
@@ -74,13 +67,13 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
           <i
             className="far fa-edit mr-3"
-            style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
+            style={{ color: "#000000", cursor: "pointer" }}
             onClick={() => setModal(true)}
           ></i>{" "}
           <i
             className="far fa-trash-alt "
-            style={{ color: colors[index % 3].primaryColor, cursor: "pointer" }}
-            onClick={handleDelete}
+            style={{ color: "#000000", cursor: "pointer" }}
+            onClick={() => setDialog(true)}
           ></i>
         </div>
         <EditMetaPopUp
@@ -89,6 +82,11 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
           updateMeta={updateMeta}
           metaObj={metaObj}
         />
+        <AlertDialog
+          toggleDialog={toggleDialog}
+          dialog={dialog}
+          handleDelete={handleDelete}
+        ></AlertDialog>
       </div>
     </div>
   );

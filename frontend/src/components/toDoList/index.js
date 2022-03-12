@@ -91,10 +91,7 @@ const ToDoList = () => {
   return (
     <>
       <div className="header text-center">
-        <Link to="/sobre" className="about">
-          Sobre
-        </Link>
-        <h3>Metas</h3>
+        <h3>Minhas metas</h3>
         <button
           className="btn btn-primary mt-2"
           data-testid="criar-meta"
@@ -103,7 +100,9 @@ const ToDoList = () => {
           Criar Meta
         </button>
       </div>
-
+      <Link to="/sobre" className="about">
+        Sobre
+      </Link>
       <div className="task-container">
         {metasList.map((obj, index) => (
           <Card

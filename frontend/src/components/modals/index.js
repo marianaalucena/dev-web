@@ -82,7 +82,6 @@ function PopUp({ modal, toggle, save }) {
             <input
               type="text"
               className="form-control"
-              defaultValue={descricao}
               onChange={(event) => setDescricao(event.target.value)}
               name="descricao"
               maxLength="20"
@@ -117,7 +116,6 @@ function PopUp({ modal, toggle, save }) {
             <input
               type="text"
               className="form-control"
-              defaultValue={tipo}
               onChange={(e) => setTipo(e.target.value)}
               placeholder="Pessoal / Profissional / Financeira"
               name="tipo"
@@ -130,7 +128,6 @@ function PopUp({ modal, toggle, save }) {
             <input
               type="text"
               className="form-control"
-              defaultValue={prioridade}
               onChange={(e) => setPrioridade(e.target.value)}
               placeholder="Alta / Média / Baixa"
               name="prioridade"
