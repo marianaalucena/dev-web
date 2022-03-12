@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./toDoList.css";
-import PopUp from "../modals";
-import Card from "../card";
+import PopUp from "../../components/modals";
+import Card from "../../components/card";
 import api from "../../api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";

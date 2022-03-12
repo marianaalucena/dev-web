@@ -1,5 +1,5 @@
 import React from "react";
-import ToDoList from "./components/toDoList";
+import ToDoList from "./pages/toDoList";
 import About from "./pages/about";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
