@@ -3,6 +3,7 @@ var router = express.Router();
 
 let metas = []; // As informações ficaram armazenadas dentro deste array []
 let concluidas = [];
+let atrasadas = [];
 
 function Meta(id, descricao, dataInicio, dataFim, tipo, prioridade) {
   return {
@@ -40,25 +41,6 @@ router.post("/metas", (req, res, next) => {
   console.log(metas);
 });
 
-router.get("/metasConcluidas", function (req, res, next) {
-  return res.json(concluidas);
-}); //rota para listar todas as metas concluidas
-
-router.post("/metasConcluidas", (req, res, next) => {
-  const metaConcluida = new Meta(
-    req.body.id,
-    req.body.descricao,
-    req.body.dataInicio,
-    req.body.dataFim,
-    req.body.tipo,
-    req.body.prioridade
-  );
-
-  metas = metas.filter((meta) => meta.id !== req.body.id);
-  concluidas.push(metaConcluida);
-  res.json(concluidas);
-});
-
 //nao esta pronta
 router.put("/metas/:id", (req, res, next) => {
   /*
@@ -82,6 +64,44 @@ router.delete("/metas/delete/:id", (req, res, next) => {
   } else {
     res.status(404).json({ message: "Meta não encontrada" });
   }
+});
+
+router.get("/metasConcluidas", function (req, res, next) {
+  return res.json(concluidas);
+}); //rota para listar todas as metas concluidas
+
+router.post("/metasConcluidas", (req, res, next) => {
+  const metaConcluida = new Meta(
+    req.body.id,
+    req.body.descricao,
+    req.body.dataInicio,
+    req.body.dataFim,
+    req.body.tipo,
+    req.body.prioridade
+  );
+
+  metas = metas.filter((meta) => meta.id !== req.body.id);
+  concluidas.push(metaConcluida);
+  res.json(concluidas);
+});
+
+router.get("/metasAtrasadas", function (req, res, next) {
+  return res.json(atrasadas);
+}); //rota para listar todas as metas concluidas
+
+router.post("/metasAtrasadas", (req, res, next) => {
+  const metaAtrasada = new Meta(
+    req.body.id,
+    req.body.descricao,
+    req.body.dataInicio,
+    req.body.dataFim,
+    req.body.tipo,
+    req.body.prioridade
+  );
+
+  //metas = metas.filter((meta) => meta.id !== req.body.id);
+  atrasadas.push(metaAtrasada);
+  res.json(atrasadas);
 });
 
 module.exports = router;

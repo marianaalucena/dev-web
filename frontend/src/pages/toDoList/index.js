@@ -97,8 +97,7 @@ const ToDoList = () => {
   }
 
   function completed(metaConcluida) {
-    //setMetasList((prevState) => []);
-    //  setListCompleted((prevState) => [...prevState, metaConcluida]);
+    //setListCompleted((prevState) => [...prevState, metaConcluida]);
 
     api
       .post(`/metasConcluidas`, metaConcluida)
@@ -117,12 +116,41 @@ const ToDoList = () => {
       });
   }
 
-  /*
-  function delay() {
-    if (new Date(dateFormatt(metaObj.dataFinal)) < new Date()) {
-      setListAtrasadas(metaObj);
+  function delay(metaAtrasada) {
+    let numDias = Math.abs(
+      new Date(dateFormatt(metaAtrasada.dataFim)) -
+        new Date(dateFormatt(metaAtrasada.dataInicio))
+    );
+    if (new Date(dateFormatt(metaAtrasada)) < new Date()) {
+      api
+        .post(`/metasAtrasadas`, metaAtrasada)
+        .then((response) => {
+          setListAtrasadas(response.data);
+          getMetas();
+          console.log(response.data);
+        })
+        .catch((error) => {
+          let msg = "";
+          if (error.response) msg = error.response.data.error;
+          else msg = "Network failed";
+
+          toast.error(msg);
+        });
     }
-  }*/
+  }
+
+  const dateFormatt = (date) => {
+    var d = new Date(date);
+
+    var mes = "" + (d.getMonth() + 1);
+    var dia = "" + d.getDate();
+    var ano = d.getFullYear();
+
+    if (mes.length < 2) mes = "0" + mes;
+    if (dia.length < 2) dia = "0" + dia;
+
+    return [mes, dia, ano].join("/");
+  };
 
   useEffect(() => {
     getMetas();
@@ -149,7 +177,7 @@ const ToDoList = () => {
         Sobre
       </Link>
       <div className="task-container">
-        <List name={"Atrasadas:"} list={listAtrasadas}></List>
+        <List name={"Atrasadas:"} list={listAtrasadas} delay={delay}></List>
         <List
           name={"Em andamento:"}
           list={metasList}
