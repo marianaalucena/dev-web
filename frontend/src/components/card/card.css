@@ -4,6 +4,21 @@
   box-shadow: 0px 3px 50px #a5a5a5;
 }
 
+.task-holder:hover {
+  transform: rotateY(180deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  text-align: center;
+  margin-top: -200px;
+}
+
+.front {
+  backface-visibility: hidden;
+}
+
 .card-wrapper {
   width: 300px;
   height: 300px;
@@ -13,6 +28,14 @@
   margin: 30px;
 }
 
+.btn {
+  font-family: "Roboto Slab", serif;
+}
+
+.text {
+  font-family: "Raleway", sans-serif;
+}
+
 .task-holder {
   width: 100%;
   height: 98%;
@@ -20,42 +43,48 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
+  perspective: 700;
 }
 
 .prior-Media-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 600px;
   height: 40px;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   background-color: #fffacd;
   border-radius: 10px;
+  backface-visibility: hidden;
 }
 
 .prior-Alta-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 600px;
   height: 40px;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   background-color: #98fb98;
   border-radius: 10px;
+  backface-visibility: hidden;
 }
 
 .prior-Baixa-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 600px;
   height: 40px;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   background-color: #f08080;
   border-radius: 10px;
+  backface-visibility: hidden;
 }
 
 .prior-Media-Top {

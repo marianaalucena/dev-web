@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./card.css";
 import EditMetaPopUp from "../modals/editMeta";
 import AlertDialog from "../modals/alertDialog";
+import { Button, ButtonGroup } from "reactstrap";
 
-const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
+const Card = ({ metaObj, index, deletaMeta, updateListMetas, completed }) => {
   const [modal, setModal] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -21,7 +22,12 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
   };
 
   const handleDelete = () => {
+    toggleDialog();
     deletaMeta(index);
+  };
+
+  const concluido = () => {
+    completed(metaObj);
   };
 
   const dateFormat = (date) => {
@@ -35,6 +41,19 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
     if (dia.length < 2) dia = "0" + dia;
 
     return [dia, mes, ano].join("/");
+  };
+
+  const dateFormatt = (date) => {
+    var d = new Date(date);
+
+    var mes = "" + (d.getMonth() + 1);
+    var dia = "" + d.getDate();
+    var ano = d.getFullYear();
+
+    if (mes.length < 2) mes = "0" + mes;
+    if (dia.length < 2) dia = "0" + dia;
+
+    return [mes, dia, ano].join("/");
   };
 
   return (
@@ -60,33 +79,49 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas }) => {
         >
           {metaObj.descricao}
         </span>
-        <p className="mt-3">Data inicial: {dateFormat(metaObj.dataInicio)}</p>
-        <p className="mt-2">Data final: {dateFormat(metaObj.dataFim)}</p>
-        <p className="mt-2">Tipo: {metaObj.tipo}</p>
-        <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
-        <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
-          <i
-            className="far fa-edit mr-3"
-            style={{ color: "#000000", cursor: "pointer" }}
-            onClick={() => setModal(true)}
-          ></i>{" "}
-          <i
-            className="far fa-trash-alt "
-            style={{ color: "#000000", cursor: "pointer" }}
-            onClick={() => setDialog(true)}
-          ></i>
+        <div className="front">
+          <p className="mt-3">Data inicial: {dateFormat(metaObj.dataInicio)}</p>
+          <p className="mt-2">Data final: {dateFormat(metaObj.dataFim)}</p>
+          <p className="mt-2">Tipo: {metaObj.tipo}</p>
+          <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
+          <EditMetaPopUp
+            modal={modal}
+            toggle={toggle}
+            updateMeta={updateMeta}
+            metaObj={metaObj}
+          />
+          <AlertDialog
+            toggleDialog={toggleDialog}
+            dialog={dialog}
+            handleDelete={handleDelete}
+          ></AlertDialog>
         </div>
-        <EditMetaPopUp
-          modal={modal}
-          toggle={toggle}
-          updateMeta={updateMeta}
-          metaObj={metaObj}
-        />
-        <AlertDialog
-          toggleDialog={toggleDialog}
-          dialog={dialog}
-          handleDelete={handleDelete}
-        ></AlertDialog>
+        <div className="back">
+          <h4 className="text">
+            Você tem{" "}
+            {Math.abs(
+              new Date(dateFormatt(metaObj.dataFim)) -
+                new Date(dateFormatt(metaObj.dataInicio))
+            ) /
+              (1000 * 3600 * 24)}{" "}
+            dia(s) para concluir sua meta dentro do prazo.
+          </h4>
+          <Button color="info" onClick={concluido}>
+            Concluir
+          </Button>
+          <div style={{ position: "absolute", right: "20px", top: "200px" }}>
+            <i
+              className="far fa-edit mr-3"
+              style={{ color: "#000000", cursor: "pointer" }}
+              onClick={() => setModal(true)}
+            ></i>{" "}
+            <i
+              className="far fa-trash-alt "
+              style={{ color: "#000000", cursor: "pointer" }}
+              onClick={() => setDialog(true)}
+            ></i>
+          </div>
+        </div>
       </div>
     </div>
   );

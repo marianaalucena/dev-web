@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./toDoList.css";
 import PopUp from "../../components/modals";
-import Card from "../../components/card";
 import api from "../../api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import List from "../../components/list";
+import { Container } from "reactstrap";
 
 const ToDoList = () => {
   const [modal, setModal] = useState(false);
   const [metasList, setMetasList] = useState([]);
+  const [listCompleted, setListCompleted] = useState([]);
 
   function getMetas() {
     api
@@ -80,6 +82,15 @@ const ToDoList = () => {
       });
   }
 
+  function completed(metaConcluida) {
+    console.log("antes");
+    console.log(listCompleted);
+    console.log(metaConcluida);
+    setListCompleted(metaConcluida);
+    console.log("depois");
+    console.log(listCompleted);
+  }
+
   useEffect(() => {
     getMetas();
   }, []);
@@ -103,16 +114,22 @@ const ToDoList = () => {
       <Link to="/sobre" className="about">
         Sobre
       </Link>
-      <div className="task-container">
-        {metasList.map((obj, index) => (
-          <Card
-            metaObj={obj}
-            index={index}
-            key={index}
+      <Container>
+        <div className="task-container">
+          <List
+            name={"Suas metas:"}
+            list={metasList}
+            completed={completed}
             deletaMeta={deletaMeta}
-          ></Card>
-        ))}
-      </div>
+          ></List>
+          <List
+            name={"Concluídas:"}
+            list={listCompleted}
+            completed={completed}
+            deletaMeta={deletaMeta}
+          ></List>
+        </div>
+      </Container>
       <PopUp toggle={toggle} modal={modal} save={saveMeta}></PopUp>
     </>
   );
