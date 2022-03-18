@@ -67,21 +67,21 @@ const Card = ({
     <div className="card-wrapper mr-5">
       <div
         className={
-          metaObj.prioridade === "Alta"
-            ? "prior-Alta-Top"
-            : metaObj.prioridade === "Média"
-            ? "prior-Media-Top"
-            : "prior-Baixa-Top"
+          status === "concluida"
+            ? "concluida"
+            : status === "andamento"
+            ? "andamento"
+            : "atrasada"
         }
       ></div>
       <div className="task-holder">
         <span
           className={
-            metaObj.prioridade === "Alta"
-              ? "prior-Alta-header"
-              : metaObj.prioridade === "Média"
-              ? "prior-Media-header"
-              : "prior-Baixa-header"
+            status === "concluida"
+              ? "concluida-header"
+              : status === "andamento"
+              ? "andamento-header"
+              : "atrasada-header"
           }
         >
           {metaObj.descricao}

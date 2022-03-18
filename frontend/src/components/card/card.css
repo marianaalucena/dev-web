@@ -48,20 +48,25 @@
   perspective: 700;
 }
 
-.prior-Media-header {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  max-width: 600px;
-  height: 40px;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-size: 20px;
-  background-color: #fffacd;
-  border-radius: 10px;
-  backface-visibility: hidden;
+.concluida {
+  background-color: #00fa9a;
+  width: 100%;
+  height: 3%;
 }
 
-.prior-Alta-header {
+.andamento {
+  background-color: #87ceeb;
+  width: 100%;
+  height: 3%;
+}
+
+.atrasada {
+  background-color: #ff0000;
+  width: 100%;
+  height: 3%;
+}
+
+.concluida-header {
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 600px;
@@ -74,7 +79,7 @@
   backface-visibility: hidden;
 }
 
-.prior-Baixa-header {
+.andamento-header {
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 600px;
@@ -82,25 +87,20 @@
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-size: 20px;
-  background-color: #f08080;
+  background-color: #87cefa;
   border-radius: 10px;
   backface-visibility: hidden;
 }
 
-.prior-Media-Top {
-  background-color: #f0e68c;
-  width: 100%;
-  height: 3%;
-}
-
-.prior-Alta-Top {
-  background-color: #00ff7f;
-  width: 100%;
-  height: 3%;
-}
-
-.prior-Baixa-Top {
-  background-color: #dc143c;
-  width: 100%;
-  height: 3%;
+.atrasada-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 600px;
+  height: 40px;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  background-color: #ff6347;
+  border-radius: 10px;
+  backface-visibility: hidden;
 }

@@ -5,7 +5,6 @@ import api from "../../api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import List from "../../components/list";
-import { Container } from "reactstrap";
 
 const ToDoList = () => {
   const [modal, setModal] = useState(false);
@@ -152,7 +151,7 @@ const ToDoList = () => {
       <div className="task-container">
         <List name={"Atrasadas:"} list={listAtrasadas}></List>
         <List
-          name={"Suas metas:"}
+          name={"Em andamento:"}
           list={metasList}
           deletaMeta={deletaMeta}
           completed={completed}
