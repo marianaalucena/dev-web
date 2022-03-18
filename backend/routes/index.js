@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 let metas = []; // As informações ficaram armazenadas dentro deste array []
+let concluidas = [];
 
 function Meta(id, descricao, dataInicio, dataFim, tipo, prioridade) {
   return {
@@ -37,6 +38,25 @@ router.post("/metas", (req, res, next) => {
 
   res.json(metas);
   console.log(metas);
+});
+
+router.get("/metasConcluidas", function (req, res, next) {
+  return res.json(concluidas);
+}); //rota para listar todas as metas concluidas
+
+router.post("/metasConcluidas", (req, res, next) => {
+  const metaConcluida = new Meta(
+    req.body.id,
+    req.body.descricao,
+    req.body.dataInicio,
+    req.body.dataFim,
+    req.body.tipo,
+    req.body.prioridade
+  );
+
+  metas = metas.filter((meta) => meta.id !== req.body.id);
+  concluidas.push(metaConcluida);
+  res.json(concluidas);
 });
 
 //nao esta pronta

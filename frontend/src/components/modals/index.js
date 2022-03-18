@@ -11,8 +11,6 @@ function PopUp({ modal, toggle, save }) {
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
 
-  // const [validacao, setValidacao] = useState(true);
-
   const validatePrioridade = () => {
     const validation = prioridade === "" || prioridade === null;
     return !validation;
@@ -39,6 +37,9 @@ function PopUp({ modal, toggle, save }) {
   };
 
   const validateInfo = () => {
+    if (dataFim < dataInicio) {
+      return false;
+    }
     if (
       validatePrioridade() &&
       validateTipo() &&
@@ -52,8 +53,15 @@ function PopUp({ modal, toggle, save }) {
     }
   };
 
+  const limpaForm = () => {
+    setDescricao("");
+    setDataInicio("");
+    setDataFim("");
+    setTipo("");
+    setPrioridade("");
+  };
+
   const saveMeta = () => {
-    //console.log(validacao);
     console.log(validateInfo());
     if (validateInfo()) {
       const meta = {
@@ -64,6 +72,7 @@ function PopUp({ modal, toggle, save }) {
         dataFim,
       };
       save(meta);
+      limpaForm();
     }
   };
 
@@ -74,7 +83,10 @@ function PopUp({ modal, toggle, save }) {
         <form>
           <div className="form-group">
             {!validateInfo() ? (
-              <h4 className="error">Todos os campos são obrigatórios</h4>
+              <h4 className="error">
+                Todos os campos são obrigatórios e a data final deve ser maior
+                que a data inicial.
+              </h4>
             ) : (
               ""
             )}
@@ -138,7 +150,7 @@ function PopUp({ modal, toggle, save }) {
         </form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={saveMeta}>
+        <Button value="Submit" color="primary" onClick={saveMeta}>
           Adicionar
         </Button>{" "}
         <Button onClick={toggle}>Cancelar</Button>

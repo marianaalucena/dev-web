@@ -11,12 +11,27 @@ const ToDoList = () => {
   const [modal, setModal] = useState(false);
   const [metasList, setMetasList] = useState([]);
   const [listCompleted, setListCompleted] = useState([]);
+  const [listAtrasadas, setListAtrasadas] = useState([]);
 
   function getMetas() {
     api
       .get(`/metas`)
       .then((response) => {
         setMetasList(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+        toast.error(msg);
+      });
+  }
+
+  function getMetasConcluidas() {
+    api
+      .get(`/metasConcluidas`)
+      .then((response) => {
+        setListCompleted(response.data);
       })
       .catch((error) => {
         let msg = "";
@@ -83,16 +98,36 @@ const ToDoList = () => {
   }
 
   function completed(metaConcluida) {
-    console.log("antes");
-    console.log(listCompleted);
-    console.log(metaConcluida);
-    setListCompleted(metaConcluida);
-    console.log("depois");
-    console.log(listCompleted);
+    //setMetasList((prevState) => []);
+    //  setListCompleted((prevState) => [...prevState, metaConcluida]);
+
+    api
+      .post(`/metasConcluidas`, metaConcluida)
+      .then((response) => {
+        toast("Meta concluída com sucesso!");
+        setListCompleted(response.data);
+        getMetas();
+        console.log(response.data);
+      })
+      .catch((error) => {
+        let msg = "";
+        if (error.response) msg = error.response.data.error;
+        else msg = "Network failed";
+
+        toast.error(msg);
+      });
   }
+
+  /*
+  function delay() {
+    if (new Date(dateFormatt(metaObj.dataFinal)) < new Date()) {
+      setListAtrasadas(metaObj);
+    }
+  }*/
 
   useEffect(() => {
     getMetas();
+    getMetasConcluidas();
   }, []);
 
   const toggle = () => {
@@ -114,22 +149,22 @@ const ToDoList = () => {
       <Link to="/sobre" className="about">
         Sobre
       </Link>
-      <Container>
-        <div className="task-container">
-          <List
-            name={"Suas metas:"}
-            list={metasList}
-            completed={completed}
-            deletaMeta={deletaMeta}
-          ></List>
-          <List
-            name={"Concluídas:"}
-            list={listCompleted}
-            completed={completed}
-            deletaMeta={deletaMeta}
-          ></List>
-        </div>
-      </Container>
+      <div className="task-container">
+        <List name={"Atrasadas:"} list={listAtrasadas}></List>
+        <List
+          name={"Suas metas:"}
+          list={metasList}
+          deletaMeta={deletaMeta}
+          completed={completed}
+          status="andamento"
+        ></List>
+        <List
+          name={"Concluídas:"}
+          list={listCompleted}
+          completed={completed}
+          status={"concluida"}
+        ></List>
+      </div>
       <PopUp toggle={toggle} modal={modal} save={saveMeta}></PopUp>
     </>
   );

@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import "./card.css";
 import EditMetaPopUp from "../modals/editMeta";
 import AlertDialog from "../modals/alertDialog";
-import { Button, ButtonGroup } from "reactstrap";
+import { Button } from "reactstrap";
 
-const Card = ({ metaObj, index, deletaMeta, updateListMetas, completed }) => {
+const Card = ({
+  metaObj,
+  index,
+  deletaMeta,
+  updateListMetas,
+  completed,
+  status,
+}) => {
   const [modal, setModal] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -96,32 +103,48 @@ const Card = ({ metaObj, index, deletaMeta, updateListMetas, completed }) => {
             handleDelete={handleDelete}
           ></AlertDialog>
         </div>
-        <div className="back">
-          <h4 className="text">
-            Você tem{" "}
-            {Math.abs(
-              new Date(dateFormatt(metaObj.dataFim)) -
-                new Date(dateFormatt(metaObj.dataInicio))
-            ) /
-              (1000 * 3600 * 24)}{" "}
-            dia(s) para concluir sua meta dentro do prazo.
-          </h4>
-          <Button color="info" onClick={concluido}>
-            Concluir
-          </Button>
-          <div style={{ position: "absolute", right: "20px", top: "200px" }}>
-            <i
-              className="far fa-edit mr-3"
-              style={{ color: "#000000", cursor: "pointer" }}
-              onClick={() => setModal(true)}
-            ></i>{" "}
-            <i
-              className="far fa-trash-alt "
-              style={{ color: "#000000", cursor: "pointer" }}
-              onClick={() => setDialog(true)}
-            ></i>
+        {status === "concluida" ? (
+          <div className="back">
+            <h4 className="text">
+              Sua meta foi concluída em{" "}
+              {Math.round(
+                Math.abs(
+                  new Date(dateFormatt(metaObj.dataInicio)) - new Date()
+                ) /
+                  (1000 * 3600 * 24) -
+                  1
+              )}{" "}
+              dia(s).
+            </h4>
           </div>
-        </div>
+        ) : (
+          <div className="back">
+            <h4 className="text">
+              Você tem{" "}
+              {Math.abs(
+                new Date(dateFormatt(metaObj.dataFim)) -
+                  new Date(dateFormatt(metaObj.dataInicio))
+              ) /
+                (1000 * 3600 * 24)}{" "}
+              dia(s) para concluir sua meta dentro do prazo.
+            </h4>
+            <Button color="info" onClick={concluido}>
+              Concluir
+            </Button>
+            <div style={{ position: "absolute", right: "20px", top: "200px" }}>
+              <i
+                className="far fa-edit mr-3"
+                style={{ color: "#000000", cursor: "pointer" }}
+                onClick={() => setModal(true)}
+              ></i>{" "}
+              <i
+                className="far fa-trash-alt "
+                style={{ color: "#000000", cursor: "pointer" }}
+                onClick={() => setDialog(true)}
+              ></i>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

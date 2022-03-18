@@ -14,9 +14,9 @@
   height: 100%;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
   padding: 40px 100px;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .about {
