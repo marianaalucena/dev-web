@@ -22,12 +22,22 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/metas", function (req, res, next) {
+  for (let i = 0; i < metas.length; i++) {
+    if (
+      new Date(metas[i].dataFim).getTime() + 86400000 <
+      new Date().getTime()
+    ) {
+      atrasadas.push(metas[i]);
+      metas = metas.filter((meta) => meta.id !== metas[i].id);
+    }
+  }
+
   return res.json(metas);
-}); //rota para listar todas as metas
+}); //rota para listar todas as metas sem atraso
 
 router.post("/metas", (req, res, next) => {
   const meta = new Meta(
-    metas.length + 1,
+    Math.floor(Math.random() * 1000),
     req.body.descricao,
     req.body.dataInicio,
     req.body.dataFim,
@@ -41,25 +51,36 @@ router.post("/metas", (req, res, next) => {
   console.log(metas);
 });
 
-//nao esta pronta
 router.put("/metas/:id", (req, res, next) => {
-  /*
   const { id } = req.params;
-  const body = req.body;
+  const metaAtualizada = new Meta(
+    id,
+    req.body.descricao,
+    req.body.dataInicio,
+    req.body.dataFim,
+    req.body.tipo,
+    req.body.prioridade
+  );
+
   const idInt = parseInt(id);
-  const updated = metas.find((meta) => meta.id === idInt);
+  const updatedAndamento = metas.find((meta) => parseInt(meta.id) === idInt);
+
+  if (updatedAndamento) {
+    metas = metas.filter((meta) => parseInt(meta.id) !== idInt);
+    metas.push(metaAtualizada);
+  }
 
   res.json(metas);
   console.log(metas);
-  */
 });
 
 router.delete("/metas/delete/:id", (req, res, next) => {
   const { id } = req.params;
   const idInt = parseInt(id);
-  const deleted = metas.find((meta) => meta.id === idInt);
+  const deleted = metas.find((meta) => parseInt(meta.id) === idInt);
   if (deleted) {
-    metas = metas.filter((meta) => meta.id !== idInt);
+    metas = metas.filter((meta) => parseInt(meta.id) !== idInt);
+    console.log(metas);
     res.status(200).json(deleted);
   } else {
     res.status(404).json({ message: "Meta não encontrada" });
@@ -80,7 +101,20 @@ router.post("/metasConcluidas", (req, res, next) => {
     req.body.prioridade
   );
 
-  metas = metas.filter((meta) => meta.id !== req.body.id);
+  const removeMeta = metas.find(
+    (meta) => meta.id === req.body.id && meta.descricao === req.body.descricao
+  );
+  const removeAtrasada = atrasadas.find(
+    (meta) => meta.id === req.body.id && meta.descricao === req.body.descricao
+  );
+  if (removeMeta) {
+    console.log("entrou");
+    metas = metas.filter((meta) => meta.id !== req.body.id);
+  }
+  if (removeAtrasada) {
+    atrasadas = atrasadas.filter((meta) => meta.id !== req.body.id);
+  }
+
   concluidas.push(metaConcluida);
   res.json(concluidas);
 });
@@ -99,7 +133,6 @@ router.post("/metasAtrasadas", (req, res, next) => {
     req.body.prioridade
   );
 
-  //metas = metas.filter((meta) => meta.id !== req.body.id);
   atrasadas.push(metaAtrasada);
   res.json(atrasadas);
 });

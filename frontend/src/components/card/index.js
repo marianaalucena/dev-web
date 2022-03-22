@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import "./card.css";
-import EditMetaPopUp from "../modals/editMeta";
+import PopUp from "../modals/createMeta";
 import AlertDialog from "../modals/alertDialog";
 import { Button } from "reactstrap";
 
-const Card = ({
-  metaObj,
-  index,
-  deletaMeta,
-  updateListMetas,
-  completed,
-  status,
-}) => {
+const Card = ({ metaObj, index, deletaMeta, update, completed, status }) => {
   const [modal, setModal] = useState(false);
   const [dialog, setDialog] = useState(false);
 
@@ -23,9 +16,8 @@ const Card = ({
     setDialog(!dialog);
   };
 
-  //falta rota no back
-  const updateMeta = (obj) => {
-    updateListMetas(obj, index);
+  const updateMeta = (meta) => {
+    update(index, meta);
   };
 
   const handleDelete = () => {
@@ -91,10 +83,11 @@ const Card = ({
           <p className="mt-2">Data final: {dateFormat(metaObj.dataFim)}</p>
           <p className="mt-2">Tipo: {metaObj.tipo}</p>
           <p className="mt-2">Prioridade: {metaObj.prioridade}</p>
-          <EditMetaPopUp
+          <PopUp
             modal={modal}
             toggle={toggle}
-            updateMeta={updateMeta}
+            updated={updateMeta}
+            edit={true}
             metaObj={metaObj}
           />
           <AlertDialog
@@ -117,15 +110,14 @@ const Card = ({
               dia(s).
             </h4>
           </div>
-        ) : (
+        ) : status === "andamento" ? (
           <div className="back">
             <h4 className="text">
-              Você tem{" "}
-              {Math.abs(
-                new Date(dateFormatt(metaObj.dataFim)) -
-                  new Date(dateFormatt(metaObj.dataInicio))
-              ) /
-                (1000 * 3600 * 24)}{" "}
+              Você tem aproximadamente{" "}
+              {Math.round(
+                Math.abs(new Date(dateFormatt(metaObj.dataFim)) - new Date()) /
+                  (1000 * 3600 * 24)
+              )}{" "}
               dia(s) para concluir sua meta dentro do prazo.
             </h4>
             <Button color="info" onClick={concluido}>
@@ -143,6 +135,21 @@ const Card = ({
                 onClick={() => setDialog(true)}
               ></i>
             </div>
+          </div>
+        ) : (
+          <div className="back">
+            <h4 className="text">
+              Sua meta foi expirada. Você atrasou{" "}
+              {Math.round(
+                Math.abs(new Date(dateFormatt(metaObj.dataFim)) - new Date()) /
+                  (1000 * 3600 * 24) -
+                  1
+              )}{" "}
+              dia(s).
+            </h4>
+            <Button color="info" onClick={concluido}>
+              Concluir
+            </Button>
           </div>
         )}
       </div>
